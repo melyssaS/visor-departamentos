@@ -17,7 +17,7 @@ header{
     padding-top: 20px;
     text-align: center;
     height: 30vh;
-    font-size: 1.8rem;
+    font-size: 4rem;
     color: white;
     text-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
      
@@ -25,7 +25,7 @@ header{
 
 .enunciado{
   margin-top: 10px;
-  font-size: 1.6rem;
+  font-size: 3rem;
   font-style: oblique;  
   }
 
@@ -35,7 +35,8 @@ header{
     align-items: center;
     padding:30px 50px;
     margin:0 auto;
-    width: calc(100% - 10%);
+    width: calc(100% - 20%);
+    height: 150px;
     border-radius: 16px;
     background-color:#353c4a;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -44,7 +45,9 @@ header{
 .form-box input{
     margin: 0 10px;
     padding: 5px 10px;
-    width: 90%;
+    height: 40%;
+    width: 80%;
+    font-size: 2rem;
     border-radius: 3px;
     border-style: none;
    
@@ -52,9 +55,12 @@ header{
 
 .form-box button{
     padding: 5px 8px;
+    height: 40%;
+    width: 80px;
     border-radius: 3px;
     border-style: none;
     color: gray;
+    font-size: 2rem;
 }
 
 .contenido{
@@ -69,8 +75,6 @@ header{
 }
 
 #centrar{
-    /* flex-wrap: wrap;
-    justify-content: center; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -82,8 +86,9 @@ header{
 margin: 20px 30px;
 padding: 5px 15px 20px;
  height: auto;
- width: 280px;
+ width: 400px;
  min-height: 200px;
+ font-size: 1.5rem;
  border-radius: 3px;
  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
@@ -92,7 +97,7 @@ padding: 5px 15px 20px;
 .lado .titulo{
     position: relative;
     padding: 5px 10px;
-    width: 100px;
+    width: 150px;
     bottom: 15px;
     margin: 0 auto;
     background: #e94c3d;
