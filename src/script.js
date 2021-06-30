@@ -47,9 +47,12 @@ function showFilteredData(){
 
     deleteElement();
     let searchValue = document.getElementById("search-box").value;  
-    searchValue = removeAccents(searchValue.toLowerCase());
-    var result= getFilteredData(searchValue);
-    result.forEach((elem)=> document.body.onload = addElement(elem[0],elem[1].toString().split(",").join(", ")) )
+    if (searchValue) {
+      searchValue = removeAccents(searchValue.toLowerCase());
+      var result= getFilteredData(searchValue);
+      result.forEach((elem)=> document.body.onload = addElement(elem[0],elem[1].toString().split(",").join(", ")) )
+    }
+    
 
 }
 
@@ -82,6 +85,9 @@ fetch('https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia
   }
 
   }
+
+
+
 
 
 
