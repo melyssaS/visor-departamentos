@@ -1,16 +1,27 @@
 
+// Todos los datos en minuscula y sin acento
+var values=[];
+
+//Todos los datos exactos obtenidos del json
+var show=[];
+  
+  //Borramos los departamentos del anterior filtro
+function deleteElement(){
+  var elem = document.getElementById('centrar');
+    while (elem.firstChild) {
+      elem.removeChild(elem.firstChild);
+  }
+}
+
 //Removemos acentos 
 const removeAccents = (str) => {
   return str.normalize("NFD").replace(/[\u0300-\u0301]/g, "");
 } 
 
 //Filtramos los datos de acuerdo al string ingresado
-function filtrarData(){
-  result=[];
-  deleteElement();
-    let searchValue = document.getElementById("search-box").value;  
-    searchValue = removeAccents(searchValue.toLowerCase())
-    //poner filtro
+function getFilteredData(searchValue){
+    var result=[];
+    //buscamos los que cumplan el filtro
     for (var i in values) {
       if (values[i][0].indexOf(searchValue)!=-1){
         result.push(show[i]);
@@ -18,10 +29,9 @@ function filtrarData(){
         result.push(show[i]);
       }
     }
-
-    result.forEach((elem)=> document.body.onload = addElement(elem[0],elem[1].toString().split(",").join(", ")) )
+    return result;
+    
 }
-
 
 //Añadimos los departamentos de acuerdo al filtro
 function addElement( departamento, ciudades ){
@@ -33,20 +43,30 @@ function addElement( departamento, ciudades ){
                                       </article>`
 }
 
-//Borramos los departamentos del anterior filtro
-function deleteElement(){
-  var elem = document.getElementById('centrar');
-    while (elem.firstChild) {
-      elem.removeChild(elem.firstChild);
-  }
+function showFilteredData(){
+
+    deleteElement();
+    let searchValue = document.getElementById("search-box").value;  
+    searchValue = removeAccents(searchValue.toLowerCase());
+    var result= getFilteredData(searchValue);
+    result.forEach((elem)=> document.body.onload = addElement(elem[0],elem[1].toString().split(",").join(", ")) )
+
 }
 
 
+// Hacemos el fetch
 fetch('https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json')
   .then(response => response.json()
     )
   .then(data =>{
     
+    getData(data);
+
+  })
+
+  function getData(data){
+
+       
    for (let i = 0; i < data.length; i++) {
 
     //Borramos el id de los objetos
@@ -54,21 +74,15 @@ fetch('https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia
     show.push(Object.values(data[i]));
     
     //quitar acento y pasarlo a minuscula
-    data[i].departamento= removeAccents (data[i].departamento.toLowerCase())
+    data[i].departamento= removeAccents (data[i].departamento.toLowerCase());
     data[i].ciudades=(data[i].ciudades).map(function(ciudad){
       return removeAccents (ciudad.toLowerCase())
     })
     values.push(Object.values(data[i]));
   }
 
-  })
+  }
 
-  // Todos los datos en minuscula y sin acento
-  var values=[];
 
-  //Todos los datos exactos obtenidos del json
-  var show=[];
 
-  // Datos obtenidos de acuerdo al filtro
-  var result;
   
